@@ -30,5 +30,5 @@ end)
 RegisterNetEvent('AFK-Kick:kickPlayer')
 AddEventHandler('AFK-Kick:kickPlayer', function()
     local playerSource = source
-    DropPlayer(playerSource, "AFK-Kick: Kicked for idling")
+    DropPlayer(playerSource, "You we're kicked for idling.")
 end)

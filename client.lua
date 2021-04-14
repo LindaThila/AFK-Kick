@@ -3,7 +3,7 @@
     -- Created by JavaHampus
 -- ]
 
-debugMode = true 
+debugMode = false 
 
 -- Do not touch -- 
 local currentPosition  = nil
@@ -11,7 +11,7 @@ local previousPosition = nil
 local currentHeading   = nil
 local previousHeading  = nil
 local timer = 0
-kickBypass = false
+local kickBypass = false
 
 -- [
     -- Configuration
@@ -19,8 +19,7 @@ kickBypass = false
 local kickTime = 1200 -- In seconds
 
 AddEventHandler('playerSpawning', function()
-    local playerSource = source
-    TriggerServerEvent('AFK_Kick:CheckUser', playerSource)
+    TriggerServerEvent('AFK_Kick:CheckUser', source)
 end)
 
 RegisterNetEvent('AFK_Kick:CheckUser:Return')
@@ -41,14 +40,13 @@ end)
 Citizen.CreateThread(function()
     while true do 
         Citizen.Wait(1000)
-
-        player = PlayerPedId(-1)
+        local player = PlayerPedId()
 
         if player then 
-            currentPosition = GetEntityCoords(player, true)
+            currentPosition = GetEntityCoords(player, )
             currentHeading = GetEntityHeading(player)
 
-            if currentPosition == previousPosition and currentHeading == previousHeading then 
+            if currentPosition == previousPosition and currentHeading == previousHeading then -- Check if the player is not moving
                 if timer > 0 then 
                     -- Notifications 
                     if timer == math.ceil(kickTime / 4) then

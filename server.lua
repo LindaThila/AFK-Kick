@@ -5,6 +5,8 @@ local kickBypass = {
 RegisterServerEvent('AFK_Kick:CheckUser')
 AddEventHandler('AFK_Kick:CheckUser', function()
     local playerSource = source
+    local identifierDiscord
+
     for k, v in ipairs(GetPlayerIdentifiers(playerSource)) do
         if string.sub(v, 1, string.len("discord:")) == "discord:" then
             identifierDiscord = v
@@ -29,6 +31,5 @@ end)
 
 RegisterNetEvent('AFK-Kick:kickPlayer')
 AddEventHandler('AFK-Kick:kickPlayer', function()
-    local playerSource = source
-    DropPlayer(playerSource, "You we're kicked for being AFK.")
+    DropPlayer(source, "You we're kicked for being AFK.")
 end)
